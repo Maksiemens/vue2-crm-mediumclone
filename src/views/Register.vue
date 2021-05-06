@@ -85,16 +85,6 @@ export default {
     },
   },
   methods: {
-    // onSubmit() {
-    //   const formValue = {
-    //     email: this.email,
-    //     password: this.password,
-    //     username: this.username,
-    //   };
-    //   this.$store.dispatch('register', formValue);
-    //   this.$router.push({name: 'home'});
-    // },
-
     async onSubmit() {
       const formValue = {
         email: this.email,

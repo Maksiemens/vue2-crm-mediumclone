@@ -1,4 +1,5 @@
 import authApi from '@/api/auth';
+import persistanceStorage from '@/helpers/persistanceStorage';
 
 const state = {
   isSubmitting: false,
@@ -30,6 +31,7 @@ const actions = {
     try {
       const response = await authApi.register(credentials);
       context.commit('registerSuccess', response.data.user);
+      persistanceStorage.setItem('token', response.data.user.token);
     } catch (error) {
       console.error(error);
       context.commit('registerFailure', error.response.data.errors);
