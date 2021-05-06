@@ -21,11 +21,10 @@
             </a> -->
           </p>
 
-          <!-- <list-errors errors="$ctrl.errors" class="ng-isolate-scope"
-            ><ul class="error-messages ng-hide" ng-show="$ctrl.errors">
-
-            </ul>
-          </list-errors> -->
+          <app-validation-errors
+            v-if="validationErrors"
+           :error="validationErrors"
+          ></app-validation-errors>
 
           <form @submit.prevent="onSubmit()">
             <fieldset>
@@ -72,8 +71,14 @@
 </template>
 
 <script>
+
+import AppValidationErrors from '@/components/ValidationErrors';
+
 export default {
   name: 'AppRegister',
+  components: {
+    AppValidationErrors
+  },
   data: () => ({
     email: '',
     password: '',
@@ -82,6 +87,9 @@ export default {
   computed: {
     isSubmitting() {
       return this.$store.state.auth.isSubmitting;
+    },
+    validationErrors() {
+      return this.$store.state.auth.error;
     },
   },
   methods: {
