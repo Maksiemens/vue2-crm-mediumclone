@@ -71,8 +71,8 @@
 </template>
 
 <script>
-
 import AppValidationErrors from '@/components/ValidationErrors';
+import * as fromAuth from '@/store/modules/auth';
 
 export default {
   name: 'AppRegister',
@@ -101,7 +101,7 @@ export default {
       };
 
       try {
-        await this.$store.dispatch('register', formValue);
+        await this.$store.dispatch(fromAuth.actionTypes.register, formValue);
         this.$router.push({ name: 'home' });
       } catch (error) {
         console.error(error);
