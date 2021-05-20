@@ -4,11 +4,11 @@
       <div class="row">
         <div class="col-md-6 offset-md-3 col-xs-12">
           <h1 class="text-xs-center">
-            Sign up
+            Sign in
           </h1>
           <p class="text-xs-center">
-            <router-link :to="{ name: 'login' }">
-              Have an account?
+            <router-link :to="{ name: 'register' }">
+              Need an account?
             </router-link>
           </p>
 
@@ -19,15 +19,6 @@
 
           <form @submit.prevent="onSubmit()">
             <fieldset>
-              <fieldset class="form-group">
-                <input
-                  class="form-control form-control-lg"
-                  type="text"
-                  placeholder="Username"
-                  v-model="username"
-                />
-              </fieldset>
-
               <fieldset class="form-group">
                 <input
                   class="form-control form-control-lg"
@@ -51,7 +42,7 @@
                 type="submit"
                 :disabled="isSubmitting"
               >
-                Sign up
+                Sign in
               </button>
             </fieldset>
           </form>
@@ -67,14 +58,13 @@ import AppValidationErrors from '@/components/ValidationErrors';
 import * as fromAuth from '@/store/modules/auth';
 
 export default {
-  name: 'AppRegister',
+  name: 'AppLogin',
   components: {
     AppValidationErrors,
   },
   data: () => ({
     email: '',
     password: '',
-    username: '',
   }),
   computed: {
     ...mapState({
@@ -87,11 +77,10 @@ export default {
       const formValue = {
         email: this.email,
         password: this.password,
-        username: this.username,
       };
 
       try {
-        await this.$store.dispatch(fromAuth.actionTypes.register, formValue);
+        await this.$store.dispatch(fromAuth.actionTypes.login, formValue);
         this.$router.push({ name: 'home' });
       } catch (error) {
         console.error(error);

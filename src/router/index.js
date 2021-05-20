@@ -1,7 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '@/views/Home.vue';
-import Register from '@/views/Register.vue';
+
+// !Auth
+import Auth from '@/views/Auth.vue';
+// ******
 
 Vue.use(VueRouter);
 
@@ -21,9 +24,25 @@ const routes = [
   //     import(/* webpackChunkName: "about" */ '../views/About.vue'),
   // },
   {
-    path: '/register',
-    name: 'register',
-    component: Register,
+    path: '/auth',
+    name: 'auth',
+    component: Auth,
+    children: [
+      {
+        path: '',
+        redirect: { name: 'register' },
+      },
+      {
+        path: '/register',
+        name: 'register',
+        component: () => import('@/views/Register.vue'),
+      },
+      {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/views/Login.vue'),
+      },
+    ],
   },
 ];
 
