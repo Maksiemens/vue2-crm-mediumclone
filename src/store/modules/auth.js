@@ -3,6 +3,7 @@ import * as persistanceStorage from '@/helpers/persistanceStorage';
 
 const state = {
   isSubmitting: false,
+  isLoading: false,
   currentUser: null,
   isLoggedIn: null,
   error: null,
@@ -16,6 +17,10 @@ const mutationTypes = {
   login: '[Auth] Login',
   loginSuccess: '[Auth] Login Success',
   loginFailure: '[Auth] Login Failure',
+
+  loadCurrentUser: '[Auth] Load Current User',
+  loadCurrentUserSuccess: '[Auth] Load Current User Success',
+  loadCurrentUserFailure: '[Auth] Load Current User Failure',
 };
 const mutations = {
   [mutationTypes.register](state) {
@@ -47,12 +52,31 @@ const mutations = {
     state.isSubmitting = false;
     state.error = payload;
   },
+
+  [mutationTypes.loadCurrentUser](state) {
+    state.isLoading = true;
+    state.error = null;
+  },
+  [mutationTypes.loadCurrentUserSuccess](state, payload) {
+    state.isLoading = false;
+    state.currentUser = payload;
+    state.isLoggedIn = true;
+    state.error = null;
+  },
+  [mutationTypes.loadCurrentUserFailure](state, payload) {
+    state.isLoading = false;
+    state.isLoggedIn = false;
+    state.currentUser = null;
+    state.error = payload;
+  },
 };
 
 export const actionTypes = {
   register: '[Auth/API] Register',
 
   login: '[Auth/API] Login',
+
+  loadCurrentUser: '[Auth/API] Load Current User',
 };
 const actions = {
   async [actionTypes.register](context, credentials) {
@@ -80,6 +104,18 @@ const actions = {
       throw error;
     }
   },
+
+  async [actionTypes.loadCurrentUser](context) {
+    context.commit(mutationTypes.loadCurrentUser);
+    try {
+      const response = await authApi.loadCurrentUser();
+      context.commit(mutationTypes.loadCurrentUserSuccess, response.data.user);
+    } catch (error) {
+      console.error(error);
+      context.commit(mutationTypes.loadCurrentUserFailure, error.response.data.errors);
+      throw error;
+    }
+  },
 };
 
 export const getterTypes = {
@@ -88,8 +124,10 @@ export const getterTypes = {
   isLoggedIn: '[Auth] Is Logged In',
   error: '[Auth] Error',
   isAnonymous: '[Auth] Is Anonymous',
+  isLoading: '[Auth] Is Anonymous',
 };
 const getters = {
+  [getterTypes.isLoading]: (state) => state.isLoading,
   [getterTypes.isSubmitting]: (state) => state.isSubmitting,
   [getterTypes.currentUser]: (state) => state.currentUser,
   [getterTypes.isLoggedIn]: (state) => !!state.isLoggedIn,
