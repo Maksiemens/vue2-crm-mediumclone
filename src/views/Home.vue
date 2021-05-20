@@ -14,7 +14,7 @@
       <div class="row">
         <!-- Main view - contains tabs & article list -->
         <div class="col-md-9">
-          <!-- <app-feed :api-url="apiUrl"></app-feed> -->
+          <app-feed :api-url="apiUrl"></app-feed>
           <!-- Tabs for toggling between feed, article lists -->
           <div class="feed-toggle">
             <ul class="nav nav-pills outline-active">
@@ -81,14 +81,14 @@
 </template>
 
 <script>
-// import AppFeed from '@/components/Feed';
+import AppFeed from '@/components/Feed';
 import * as fromFeed from '@/store/modules/feed';
 
 export default {
   name: 'AppHome',
-  // components: {
-  //   AppFeed,
-  // },
+  components: {
+    AppFeed,
+  },
   data: () => ({
     apiUrl: '/articles',
   }),

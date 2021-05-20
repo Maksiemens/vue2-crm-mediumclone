@@ -37,6 +37,50 @@ const router = new VueRouter({
         },
       ],
     },
+
+    {
+      path: '/your-feed',
+      name: 'your-feed',
+      component: Home,
+    },
+    {
+      path: '/tags/:slug',
+      name: 'tag',
+      component: Home,
+    },
+    {
+      path: '/articles/new',
+      name: 'create-article',
+      component: Home,
+    },
+    {
+      path: '/articles/:slug',
+      name: 'article',
+      component: Home,
+    },
+    {
+      path: '/articles/:slug/edit',
+      name: 'edit-article',
+      component: Home,
+    },
+
+    {
+      path: '/settings',
+      name: 'settings',
+      component: Home,
+    },
+
+    {
+      path: '/profiles/:slug',
+      name: 'user-profile',
+      component: Home,
+    },
+
+    {
+      path: '/profiles/:slug/favorites',
+      name: 'user-profile-favorites',
+      component: Home,
+    },
   ],
 })
 
