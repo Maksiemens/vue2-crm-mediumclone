@@ -17,13 +17,6 @@ const mutationTypes = {
   loginSuccess: '[Auth] Login Success',
   loginFailure: '[Auth] Login Failure',
 };
-
-export const actionTypes = {
-  register: '[Auth/API] Register',
-
-  login: '[Auth/API] Login',
-};
-
 const mutations = {
   [mutationTypes.register](state) {
     state.isSubmitting = true;
@@ -56,6 +49,11 @@ const mutations = {
   },
 };
 
+export const actionTypes = {
+  register: '[Auth/API] Register',
+
+  login: '[Auth/API] Login',
+};
 const actions = {
   async [actionTypes.register](context, credentials) {
     context.commit(mutationTypes.register);
@@ -84,8 +82,24 @@ const actions = {
   },
 };
 
+export const getterTypes = {
+  isSubmitting: '[Auth] Is Submitting',
+  currentUser: '[Auth] Current User',
+  isLoggedIn: '[Auth] Is Logged In',
+  error: '[Auth] Error',
+  isAnonymous: '[Auth] Is Anonymous',
+};
+const getters = {
+  [getterTypes.isSubmitting]: (state) => state.isSubmitting,
+  [getterTypes.currentUser]: (state) => state.currentUser,
+  [getterTypes.isLoggedIn]: (state) => !!state.isLoggedIn,
+  [getterTypes.error]: (state) => state.error,
+  [getterTypes.isAnonymous]: (state) => state.isLoggedIn === false,
+};
+
 export default {
   state,
   mutations,
   actions,
+  getters,
 };

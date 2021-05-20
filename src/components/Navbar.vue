@@ -48,10 +48,7 @@
                 params: { slug: currentUser.username },
               }"
             >
-              <img
-                class="user-pic"
-                :src="currentUser.image"
-              />
+              <img class="user-pic" :src="currentUser.image" />
               &nbsp;
               {{ currentUser.username }}
             </router-link>
@@ -59,7 +56,7 @@
         </template>
 
         <!-- Show this for logged out users -->
-        <template v-if="!isLoggedIn">
+        <template v-if="isAnonymous">
           <li class="nav-item">
             <router-link
               class="nav-link"
@@ -87,14 +84,16 @@
 <style scoped lang="scss"></style>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
+import * as fromAuth from '@/store/modules/auth';
 
 export default {
   name: 'AppNavbar',
   computed: {
-    ...mapState({
-      currentUser: (state) => state.auth.currentUser,
-      isLoggedIn: (state) => state.auth.isLoggedIn,
+    ...mapGetters({
+      currentUser: [fromAuth.getterTypes.currentUser],
+      isLoggedIn: [fromAuth.getterTypes.isLoggedIn],
+      isAnonymous: [fromAuth.getterTypes.isAnonymous],
     }),
   },
 };

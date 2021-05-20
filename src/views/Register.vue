@@ -13,8 +13,8 @@
           </p>
 
           <app-validation-errors
-            v-if="validationErrors"
-            :error="validationErrors"
+            v-if="error"
+            :error="error"
           ></app-validation-errors>
 
           <form @submit.prevent="onSubmit()">
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import AppValidationErrors from '@/components/ValidationErrors';
 import * as fromAuth from '@/store/modules/auth';
 
@@ -77,9 +77,9 @@ export default {
     username: '',
   }),
   computed: {
-    ...mapState({
-      isSubmitting: (state) => state.auth.isSubmitting,
-      validationErrors: (state) => state.auth.error,
+    ...mapGetters({
+      isSubmitting: [fromAuth.getterTypes.isSubmitting],
+      error: [fromAuth.getterTypes.error],
     }),
   },
   methods: {
