@@ -64,6 +64,11 @@
       </div>
 
       PAgination
+      <app-pagination
+        :total="total"
+        :limit="limit"
+        :current-page="currentPage"
+      ></app-pagination>
     </div>
   </div>
 </template>
@@ -71,15 +76,26 @@
 <script>
 import { mapGetters } from 'vuex';
 import * as fromFeed from '@/store/modules/feed';
+import AppPagination from '@/components/Pagination';
 
 export default {
   name: 'AppFeed',
+  components: {
+    AppPagination
+  },
   props: {
     apiUrl: {
       type: String,
       required: true,
     },
   },
+
+  data: () => ({
+    total: 500,
+    limit: 10,
+    currentPage: 5,
+    url: '/tags/dragons'
+  }),
   computed: {
     ...mapGetters({
       isLoading: [fromFeed.getterTypes.isLoading],
@@ -87,10 +103,5 @@ export default {
       error: [fromFeed.getterTypes.error],
     }),
   },
-
-  data: () => ({
-    email: '',
-    password: '',
-  }),
 };
 </script>
