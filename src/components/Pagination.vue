@@ -21,6 +21,7 @@
 
 <script>
 import { rangeList } from '@/helpers/utils';
+import { LIMIT } from '@/helpers/constants';
 
 export default {
   name: 'AppPagination',
@@ -31,12 +32,17 @@ export default {
     },
     limit: {
       type: Number,
-      required: true,
+      required: false,
+      default: LIMIT,
     },
     currentPage: {
       type: Number,
       required: true,
     },
+    // currentPage: {
+    //   type: String,
+    //   required: true,
+    // },
   },
 
   computed: {

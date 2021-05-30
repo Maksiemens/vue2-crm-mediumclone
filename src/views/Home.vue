@@ -82,7 +82,6 @@
 
 <script>
 import AppFeed from '@/components/Feed';
-import * as fromFeed from '@/store/modules/feed';
 
 export default {
   name: 'AppHome',
@@ -92,13 +91,5 @@ export default {
   data: () => ({
     apiUrl: '/articles',
   }),
-
-  async mounted() {
-    try {
-      await this.$store.dispatch(fromFeed.actionTypes.loadFeed);
-    } catch (error) {
-      console.error(error);
-    }
-  },
 };
 </script>

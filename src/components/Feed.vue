@@ -63,10 +63,8 @@
         Loading articles...
       </div>
 
-      PAgination
       <app-pagination
-        :total="total"
-        :limit="limit"
+        :total="data.articlesCount"
         :current-page="currentPage"
       ></app-pagination>
     </div>
@@ -80,9 +78,11 @@ import AppPagination from '@/components/Pagination';
 
 export default {
   name: 'AppFeed',
+
   components: {
-    AppPagination
+    AppPagination,
   },
+
   props: {
     apiUrl: {
       type: String,
@@ -91,17 +91,42 @@ export default {
   },
 
   data: () => ({
-    total: 500,
-    limit: 10,
-    currentPage: 5,
-    url: '/tags/dragons'
+    url: '/tags/dragons',
   }),
+
+  watch: {
+    currentPage() {
+      console.log('object');
+
+    },
+  },
+
   computed: {
     ...mapGetters({
       isLoading: [fromFeed.getterTypes.isLoading],
       data: [fromFeed.getterTypes.data],
       error: [fromFeed.getterTypes.error],
     }),
+    currentPage() {
+      return +this.$route.query.page || 1;
+    },
+    baseUrl() {
+      return this.$route.path;
+    },
+  },
+
+  methods: {
+    async loadFeed() {
+      try {
+        await this.$store.dispatch(fromFeed.actionTypes.loadFeed);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
+
+  mounted() {
+    this.loadFeed();
   },
 };
 </script>
