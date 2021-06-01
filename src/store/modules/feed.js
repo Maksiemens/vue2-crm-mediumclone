@@ -14,6 +14,7 @@ const mutationTypes = {
 const mutations = {
   [mutationTypes.loadFeed](state) {
     state.isLoading = true;
+    state.data = null;
     state.error = null;
   },
   [mutationTypes.loadFeedSuccess](state, payload) {

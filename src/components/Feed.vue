@@ -96,8 +96,7 @@ export default {
 
   watch: {
     currentPage() {
-      console.log('object');
-
+      this.loadFeed();
     },
   },
 
