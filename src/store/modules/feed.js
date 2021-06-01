@@ -33,10 +33,10 @@ export const actionTypes = {
   loadFeed: '[Feed/API] Load Feed',
 };
 const actions = {
-  async [actionTypes.loadFeed](context) {
+  async [actionTypes.loadFeed](context, { apiUrl }) {
     context.commit(mutationTypes.loadFeed);
     try {
-      const response = await feedApi.loadFeed();
+      const response = await feedApi.loadFeed(apiUrl);
       context.commit(mutationTypes.loadFeedSuccess, response.data);
     } catch (error) {
       console.error(error);

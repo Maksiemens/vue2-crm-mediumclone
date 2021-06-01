@@ -1,7 +1,7 @@
 import axios from '@/api/axios';
 
-const loadFeed = () => {
-  return axios.get('/articles');
+const loadFeed = (apiUrl) => {
+  return axios.get(apiUrl);
 };
 
 export default {

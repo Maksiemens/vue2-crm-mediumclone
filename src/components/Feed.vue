@@ -58,20 +58,20 @@
           <p>{{ article.description }}</p>
           <span>Read more...</span>
         </router-link>
-        <!-- <ul class="tag-list"></ul> -->
-
-        Loading articles...
       </div>
 
       <app-pagination
         :total="data.articlesCount"
         :current-page="currentPage"
+        :url="baseUrl"
       ></app-pagination>
     </div>
   </div>
 </template>
 
 <script>
+import { stringify, parseUrl } from 'query-string';
+import { LIMIT } from '@/helpers/constants';
 import { mapGetters } from 'vuex';
 import * as fromFeed from '@/store/modules/feed';
 import AppPagination from '@/components/Pagination';
@@ -90,9 +90,9 @@ export default {
     },
   },
 
-  data: () => ({
-    url: '/tags/dragons',
-  }),
+  // data: () => ({
+  //   tagsUrl: '/tags/dragons',
+  // }),
 
   watch: {
     currentPage() {
@@ -110,14 +110,25 @@ export default {
       return +this.$route.query.page || 1;
     },
     baseUrl() {
+      console.log(this.$route.path);
       return this.$route.path;
+    },
+    offset() {
+      return this.currentPage * LIMIT - LIMIT;
     },
   },
 
   methods: {
     async loadFeed() {
       try {
-        await this.$store.dispatch(fromFeed.actionTypes.loadFeed);
+        const parsedUrl = parseUrl(this.apiUrl);
+        const stringifiedParams = stringify({
+          ...parsedUrl.query,
+          limit: LIMIT,
+          offset: this.offset,
+        });
+        const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`;
+        await this.$store.dispatch(fromFeed.actionTypes.loadFeed, { apiUrl: apiUrlWithParams });
       } catch (error) {
         console.error(error);
       }

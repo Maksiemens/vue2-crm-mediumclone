@@ -14,7 +14,6 @@
       <div class="row">
         <!-- Main view - contains tabs & article list -->
         <div class="col-md-9">
-          <app-feed :api-url="apiUrl"></app-feed>
           <!-- Tabs for toggling between feed, article lists -->
           <div class="feed-toggle">
             <ul class="nav nav-pills outline-active">
@@ -38,6 +37,9 @@
             </ul>
           </div>
 
+          <app-feed
+            :api-url="apiUrl"
+          ></app-feed>
           <!-- List the current articles -->
           <!-- <article-list class="ng-isolate-scope">
             <div class="article-preview ng-hide">

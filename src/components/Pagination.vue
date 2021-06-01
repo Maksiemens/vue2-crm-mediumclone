@@ -39,10 +39,10 @@ export default {
       type: Number,
       required: true,
     },
-    // currentPage: {
-    //   type: String,
-    //   required: true,
-    // },
+    url: {
+      type: String,
+      required: true,
+    },
   },
 
   computed: {
