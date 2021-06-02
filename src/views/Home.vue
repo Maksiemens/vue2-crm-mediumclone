@@ -59,21 +59,7 @@
 
         <!-- Sidebar where popular tags are listed -->
         <div class="col-md-3">
-          <div class="sidebar">
-            <p>Popular Tags</p>
-
-            <div class="tag-list">
-              <a class="tag-default tag-pill">‌</a>
-            </div>
-
-            <div>
-              Loading tags...
-            </div>
-
-            <div class="post-preview">
-              No tags are here... yet.
-            </div>
-          </div>
+          <app-sidebar-tags></app-sidebar-tags>
         </div>
 
         <!-- End the row & container divs -->
@@ -84,11 +70,13 @@
 
 <script>
 import AppFeed from '@/components/Feed';
+import AppSidebarTags from '@/components/SidebarTags';
 
 export default {
   name: 'AppHome',
   components: {
     AppFeed,
+    AppSidebarTags
   },
   data: () => ({
     apiUrl: '/articles',

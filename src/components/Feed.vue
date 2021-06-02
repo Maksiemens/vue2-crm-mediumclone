@@ -90,9 +90,9 @@ export default {
     },
   },
 
-  // data: () => ({
-  //   tagsUrl: '/tags/dragons',
-  // }),
+  data: () => ({
+    tagsUrl: '/tags/dragons',
+  }),
 
   watch: {
     currentPage() {
@@ -110,7 +110,6 @@ export default {
       return +this.$route.query.page || 1;
     },
     baseUrl() {
-      console.log(this.$route.path);
       return this.$route.path;
     },
     offset() {
