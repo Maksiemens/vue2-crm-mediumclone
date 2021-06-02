@@ -1,39 +1,17 @@
 <template>
   <div class="home-page">
-    <!-- Splash banner that only shows when not logged in -->
     <app-banner></app-banner>
 
     <div class="container page">
       <div class="row">
-        <!-- Main view - contains tabs & article list -->
         <div class="col-md-9">
-          <!-- Tabs for toggling between feed, article lists -->
           <app-feed-toggle></app-feed-toggle>
-
           <app-feed :api-url="apiUrl"></app-feed>
-          <!-- List the current articles -->
-          <!-- <article-list class="ng-isolate-scope">
-            <div class="article-preview ng-hide">
-              Loading articles...
-            </div>
-            <div class="article-preview">
-              No articles are here... yet.
-            </div> -->
-
-          <!-- <list-pagination class="ng-isolate-scope ng-hide"
-              ><nav>
-                <ul class="pagination"></ul>
-              </nav>
-            </list-pagination> -->
-          <!-- </article-list> -->
         </div>
 
-        <!-- Sidebar where popular tags are listed -->
         <div class="col-md-3">
           <app-sidebar-tags></app-sidebar-tags>
         </div>
-
-        <!-- End the row & container divs -->
       </div>
     </div>
   </div>
@@ -54,7 +32,7 @@ export default {
     AppFeed,
     AppSidebarTags,
     AppBanner,
-       AppFeedToggle,
+    AppFeedToggle,
   },
 
   data: () => ({

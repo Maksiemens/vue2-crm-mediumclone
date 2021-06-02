@@ -8,7 +8,6 @@
           <app-feed :api-url="apiUrl"></app-feed>
         </div>
 
-        <!-- Sidebar where popular tags are listed -->
         <div class="col-md-3">
           <app-sidebar-tags></app-sidebar-tags>
         </div>

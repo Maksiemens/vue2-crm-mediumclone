@@ -3,10 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '@/views/Home';
 import YourFeed from '@/views/YourFeed';
 import TagFeed from '@/views/TagFeed';
-
-// !Auth
 import Auth from '@/views/Auth';
-// ******
 
 Vue.use(VueRouter);
 

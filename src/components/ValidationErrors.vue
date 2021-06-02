@@ -12,6 +12,8 @@
   </div>
 </template>
 
+<style scoped lang="scss"></style>
+
 <script>
 export default {
   name: 'AppValidationErrors',
@@ -33,5 +35,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss"></style>

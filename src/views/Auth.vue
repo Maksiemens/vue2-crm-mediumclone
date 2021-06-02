@@ -9,9 +9,5 @@
 <script>
 export default {
   name: 'AppAuth',
-  components: {},
-  data: () => ({}),
-  computed: {},
-  methods: {},
 };
 </script>

@@ -4,8 +4,6 @@
     <app-loading v-if="isLoading"></app-loading>
     <app-error-message v-if="error"></app-error-message>
 
-    {{ existingTags }}
-
     <div v-if="data" class="tag-list">
       <router-link
         class="tag-default tag-pill"
@@ -19,10 +17,6 @@
         {{ tag }}
       </router-link>
     </div>
-
-    <!-- <div class="post-preview">
-      No tags are here... yet.
-    </div> -->
   </div>
 </template>
 
