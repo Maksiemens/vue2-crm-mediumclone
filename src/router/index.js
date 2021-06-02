@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '@/views/Home.vue';
+import Home from '@/views/Home';
+import YourFeed from '@/views/YourFeed';
+import TagFeed from '@/views/TagFeed';
 
 // !Auth
-import Auth from '@/views/Auth.vue';
+import Auth from '@/views/Auth';
 // ******
 
 Vue.use(VueRouter);
@@ -41,12 +43,12 @@ const router = new VueRouter({
     {
       path: '/your-feed',
       name: 'your-feed',
-      component: Home,
+      component: YourFeed,
     },
     {
       path: '/tags/:slug',
       name: 'tag',
-      component: Home,
+      component: TagFeed,
     },
     {
       path: '/articles/new',

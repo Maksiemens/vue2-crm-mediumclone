@@ -91,10 +91,6 @@ export default {
     },
   },
 
-  data: () => ({
-    tagsUrl: '/tags/dragons',
-  }),
-
   watch: {
     currentPage() {
       this.loadFeed();
