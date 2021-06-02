@@ -1,14 +1,7 @@
 <template>
   <div class="home-page ng-scope">
     <!-- Splash banner that only shows when not logged in -->
-    <!-- <div class="banner" show-authed="false" style="display: none;">
-      <div class="container">
-        <h1 class="logo-font ng-binding" ng-bind="::$ctrl.appName | lowercase">
-          conduit
-        </h1>
-        <p>A place to share your knowledge.</p>
-      </div>
-    </div> -->
+    <app-banner></app-banner>
 
     <div class="container page">
       <div class="row">
@@ -37,9 +30,7 @@
             </ul>
           </div>
 
-          <app-feed
-            :api-url="apiUrl"
-          ></app-feed>
+          <app-feed :api-url="apiUrl"></app-feed>
           <!-- List the current articles -->
           <!-- <article-list class="ng-isolate-scope">
             <div class="article-preview ng-hide">
@@ -71,12 +62,14 @@
 <script>
 import AppFeed from '@/components/Feed';
 import AppSidebarTags from '@/components/SidebarTags';
+import AppBanner from '@/components/Banner';
 
 export default {
   name: 'AppHome',
   components: {
     AppFeed,
-    AppSidebarTags
+    AppSidebarTags,
+    AppBanner,
   },
   data: () => ({
     apiUrl: '/articles',

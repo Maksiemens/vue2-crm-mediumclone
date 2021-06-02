@@ -1,12 +1,7 @@
 <template>
   <div class="feed">
-    <div v-if="isLoading">
-      Loading...
-    </div>
-
-    <div v-if="error">
-      error...
-    </div>
+    <app-loading v-if="isLoading"></app-loading>
+    <app-error-message v-if="error"></app-error-message>
 
     <div v-if="data">
       <div
@@ -69,18 +64,24 @@
   </div>
 </template>
 
+<style scoped lang="scss"></style>
+
 <script>
 import { stringify, parseUrl } from 'query-string';
 import { LIMIT } from '@/helpers/constants';
 import { mapGetters } from 'vuex';
 import * as fromFeed from '@/store/modules/feed';
 import AppPagination from '@/components/Pagination';
+import AppLoading from '@/components/Loading';
+import AppErrorMessage from '@/components/ErrorMessage';
 
 export default {
   name: 'AppFeed',
 
   components: {
     AppPagination,
+    AppLoading,
+    AppErrorMessage,
   },
 
   props: {
@@ -127,7 +128,9 @@ export default {
           offset: this.offset,
         });
         const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`;
-        await this.$store.dispatch(fromFeed.actionTypes.loadFeed, { apiUrl: apiUrlWithParams });
+        await this.$store.dispatch(fromFeed.actionTypes.loadFeed, {
+          apiUrl: apiUrlWithParams,
+        });
       } catch (error) {
         console.error(error);
       }

@@ -1,16 +1,10 @@
 <template>
   <div class="sidebar">
     <p>Popular Tags</p>
+    <app-loading v-if="isLoading"></app-loading>
+    <app-error-message v-if="error"></app-error-message>
 
-    <div v-if="isLoading">
-      Loading tags...
-    </div>
-
-    <div v-if="error">
-      error...
-    </div>
-
-    {{  existingTags }}
+    {{ existingTags }}
 
     <div v-if="data" class="tag-list">
       <router-link
@@ -37,9 +31,17 @@
 <script>
 import { mapGetters } from 'vuex';
 import * as fromTags from '@/store/modules/tags';
+import AppLoading from '@/components/Loading';
+import AppErrorMessage from '@/components/ErrorMessage';
 
 export default {
   name: 'AppSidebarTags',
+
+  components: {
+    AppLoading,
+    AppErrorMessage
+  },
+
   computed: {
     ...mapGetters({
       isLoading: [fromTags.getterTypes.isLoading],
@@ -48,6 +50,7 @@ export default {
       error: [fromTags.getterTypes.error],
     }),
   },
+
   methods: {
     async loadTags() {
       try {
