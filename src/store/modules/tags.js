@@ -24,7 +24,6 @@ const mutations = {
   },
   [mutationTypes.loadTagsFailure](state, payload) {
     state.isLoading = false;
-    state.data = null;
     state.error = payload;
   },
 };
