@@ -14,8 +14,8 @@
       <li class="nav-item">
         <router-link
           class="nav-link"
-          :class="{ active: routeName === 'home' }"
-          :to="{ name: 'home' }"
+          :class="{ active: routeName === 'global-feed' }"
+          :to="{ name: 'global-feed' }"
         >
           Global Feed
         </router-link>

@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page">
+  <div class="global-feed-page">
     <app-banner></app-banner>
 
     <div class="container page">
@@ -26,7 +26,7 @@ import AppBanner from '@/components/Banner';
 import AppFeedToggle from '@/components/FeedToggle';
 
 export default {
-  name: 'AppHome',
+  name: 'AppGlobalFeed',
 
   components: {
     AppFeed,

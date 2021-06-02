@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-light">
     <div class="container">
-      <router-link class="navbar-brand" :to="{ name: 'home' }">
+      <router-link class="navbar-brand" :to="{ name: 'global-feed' }">
         MediumClone
       </router-link>
 
@@ -11,7 +11,7 @@
             class="nav-link"
             active-class="active"
             exact
-            :to="{ name: 'home' }"
+            :to="{ name: 'global-feed' }"
           >
             Home
           </router-link>

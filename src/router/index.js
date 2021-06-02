@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '@/views/Home';
+import GlobalFeed from '@/views/GlobalFeed';
 import YourFeed from '@/views/YourFeed';
 import TagFeed from '@/views/TagFeed';
 import Auth from '@/views/Auth';
@@ -10,11 +10,6 @@ Vue.use(VueRouter);
 const router = new VueRouter({
   mode: 'history',
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home,
-    },
     {
       path: '/auth',
       // name: 'auth',
@@ -36,7 +31,11 @@ const router = new VueRouter({
         },
       ],
     },
-
+    {
+      path: '/',
+      name: 'global-feed',
+      component: GlobalFeed,
+    },
     {
       path: '/your-feed',
       name: 'your-feed',
@@ -50,35 +49,35 @@ const router = new VueRouter({
     {
       path: '/articles/new',
       name: 'create-article',
-      component: Home,
+      component: GlobalFeed,
     },
     {
       path: '/articles/:slug',
       name: 'article',
-      component: Home,
+      component: GlobalFeed,
     },
     {
       path: '/articles/:slug/edit',
       name: 'edit-article',
-      component: Home,
+      component: GlobalFeed,
     },
 
     {
       path: '/settings',
       name: 'settings',
-      component: Home,
+      component: GlobalFeed,
     },
 
     {
       path: '/profiles/:slug',
       name: 'user-profile',
-      component: Home,
+      component: GlobalFeed,
     },
 
     {
       path: '/profiles/:slug/favorites',
       name: 'user-profile-favorites',
-      component: Home,
+      component: GlobalFeed,
     },
   ],
 })

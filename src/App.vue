@@ -13,9 +13,11 @@ import * as fromAuth from '@/store/modules/auth';
 
 export default {
   name: 'App',
+
   components: {
     AppNavbar,
   },
+
   async mounted() {
     try {
       await this.$store.dispatch(fromAuth.actionTypes.loadCurrentUser);
