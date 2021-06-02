@@ -4,27 +4,7 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-9">
-          <div class="feed-toggle">
-            <ul class="nav nav-pills outline-active">
-              <li class="nav-item">
-                <a class="nav-link active">
-                  Your Feed
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="" class="nav-link">
-                  Global Feed
-                </a>
-              </li>
-
-              <li class="nav-item ng-hide">
-                <a href="" class="nav-link active">
-                  <i class="ion-pound"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
+          <app-feed-toggle :tag-name="tagName"></app-feed-toggle>
           <app-feed :api-url="apiUrl"></app-feed>
         </div>
 
@@ -43,6 +23,7 @@
 import AppFeed from '@/components/Feed';
 import AppSidebarTags from '@/components/SidebarTags';
 import AppBanner from '@/components/Banner';
+import AppFeedToggle from '@/components/FeedToggle';
 
 export default {
   name: 'AppTagFeed',
@@ -51,12 +32,16 @@ export default {
     AppFeed,
     AppSidebarTags,
     AppBanner,
+    AppFeedToggle,
   },
 
   computed: {
+    tagName() {
+      return this.$route.params.slug;
+    },
+
     apiUrl() {
-      const tagName = this.$route.params.slug;
-      return `/articles?tag=${tagName}`;
+      return `/articles?tag=${this.tagName}`;
     },
   },
 };

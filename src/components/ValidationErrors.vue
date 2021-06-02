@@ -15,12 +15,14 @@
 <script>
 export default {
   name: 'AppValidationErrors',
+
   props: {
     error: {
       type: Object,
       required: true,
     },
   },
+
   computed: {
     errorMessages() {
       return Object.keys(this.error).map((item) => {

@@ -8,27 +8,7 @@
         <!-- Main view - contains tabs & article list -->
         <div class="col-md-9">
           <!-- Tabs for toggling between feed, article lists -->
-          <div class="feed-toggle">
-            <ul class="nav nav-pills outline-active">
-              <li class="nav-item">
-                <a class="nav-link active">
-                  Your Feed
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="" class="nav-link">
-                  Global Feed
-                </a>
-              </li>
-
-              <li class="nav-item ng-hide">
-                <a href="" class="nav-link active">
-                  <i class="ion-pound"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
+          <app-feed-toggle></app-feed-toggle>
 
           <app-feed :api-url="apiUrl"></app-feed>
           <!-- List the current articles -->
@@ -65,6 +45,7 @@
 import AppFeed from '@/components/Feed';
 import AppSidebarTags from '@/components/SidebarTags';
 import AppBanner from '@/components/Banner';
+import AppFeedToggle from '@/components/FeedToggle';
 
 export default {
   name: 'AppHome',
@@ -73,6 +54,7 @@ export default {
     AppFeed,
     AppSidebarTags,
     AppBanner,
+       AppFeedToggle,
   },
 
   data: () => ({
